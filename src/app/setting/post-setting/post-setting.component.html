@@ -1,0 +1,31 @@
+
+    <div class="d-flex justify-content-center" *ngIf="writerPost">
+      <div class="row">
+        <div class="col" *ngFor="let post of writerPost">
+          <div class="card" [style.width.px]="300">
+            <img [src]="post.thumbnail" class="card-img-top image-content" [alt]="post.title" [routerLink]="['/posts',post.id]">
+            <div class="card-body">
+              <h5 class="card-title">{{post.title}}</h5>
+              <p class="card-text">{{post.summary}}</p>
+              <button class="btn-primary" [routerLink]="['/posts',post.id,'edit']">Edit</button>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted" *ngIf="post.updateDate;else publishDate">Last updated:{{post.updateDate | date}} </small>
+               <ng-template #publishDate>
+                <small class="text-muted">Publish date: {{post.publishDate | date}}</small>
+               </ng-template>
+            
+               
+            </div>
+           </div> 
+        </div>
+      
+        
+        
+      </div>
+      
+    </div>
+   
+<div class="alert alert-warning" *ngIf="errorMessage">
+    {{errorMessage}}
+</div>

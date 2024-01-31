@@ -1,0 +1,59 @@
+
+.card{
+    width:50%;
+    transition: 1s;
+}
+.imageColor{
+    width: 17.88rem;
+    height: 18.7rem;
+    background-color: rgb(0, 0, 0);
+    position: relative;
+    left:0px;
+
+}
+span{
+    cursor: pointer;
+}
+.imageColor:hover{
+    background-color: lightgray;
+  
+   
+}
+.image-text{
+    visibility: hidden;
+    width:7rem;
+    position:absolute;
+    left:120px;
+    top:108px;
+    
+
+}
+
+.user-image:hover{
+    cursor: pointer;
+}
+.user-image{
+    max-width:100%;
+}
+.card-body{
+    max-width:100%;
+}
+.imageColor:hover .image-text{
+    visibility:visible;
+}
+
+
+
+.image-content{
+    cursor: pointer;
+    height: 300px;
+}
+.tabBar li{
+    display:inline-block;
+   margin-right: 10px; 
+   
+}
+.tabBar ul{
+    text-align: center;
+    
+}

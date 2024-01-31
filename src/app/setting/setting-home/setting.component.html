@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-center mt-5">
+    <div class="circle">
+        <h1 class="text-center position-relative text-white">{{username?.charAt(0)}}</h1>
+    </div>
+  </div>
+  <h1 class="text-center mt-2">{{username}}</h1>
+  <div class="d-flex justify-content-center mb-2">
+    <button class="btn btn-primary " (click)="sharingClck()">Share</button>
+    <button class="btn btn-success ms-2" [routerLink]="['/posts/0/edit']" *ngIf="userRole === 'Author'">Add Post</button>
+  </div>
+  
+  <div class="d-flex justify-content-center">
+  <a class="link-primary" [routerLink]="['posts']">Your Posts</a>
+  <a class="link-primary ms-3" [routerLink]="['profile']">Your Profile</a>
+  </div>
+    <div class="container mt-2" >
+      <router-outlet></router-outlet>
+    </div>
+</div>

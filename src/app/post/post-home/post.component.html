@@ -1,0 +1,42 @@
+<body>
+  <div class="living-room-block">
+    <img src="assets/images/living-room.avif" [style.height.px]="300" class="img-fluid" width="100%">
+  </div>
+    <div class="tabBar">
+        <ul>
+          <li *ngFor="let category of categories"><span (click)="getCategoryPost(category.id,category.name)">{{category.name}}</span> &nbsp;<div class="vr"></div> </li>
+        </ul> 
+    </div>
+    <div *ngIf="errorMessage">
+     <h1 class="text-warning text-center">{{errorMessage}}</h1> 
+    </div>
+    <div class="row row-cols-1 row-cols-sm-1  row-cols-md-3 row-cols-lg-5 g-4" *ngIf="posts">
+        <!--http data-->
+        <ng-container *ngIf="posts">
+          <div class="col" *ngFor="let post of posts" >
+            <div class="card" [style.width.px]="300">
+             
+              <img [src]="post.thumbnail" class="card-img-top image-content" alt="thumbline" [routerLink]="['/posts',post.id]">
+              
+              <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text">{{post.summary}}</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted" *ngIf="post.updateDate;else publishDate">Last updated:{{post.updateDate}} </small>
+                 <ng-template #publishDate>
+                  <small class="text-muted">Last Update: {{post.publishDate}}</small>
+                 </ng-template>
+              
+                 
+              </div>
+            </div>
+          </div>
+        </ng-container>
+       
+        
+    </div>
+    
+
+
+</body>

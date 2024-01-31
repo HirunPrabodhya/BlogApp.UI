@@ -1,0 +1,17 @@
+ <div class="container mt-2" *ngIf="postDetail" id="content">
+    <div class="card" style="max-width: 500px;margin: 0 auto; max-height: auto;">
+        <img [src]="postDetail.thumbnail" alt="" class="card img-top" [style.width.px]="500">
+        <div class="card-body">
+            <h1 class="card-title">{{postDetail.title }}</h1>
+            <article class="card-text" [innerHTML]="postDetail.content | noSantize">
+                {{postDetail.content}}
+            </article>
+
+        </div>
+        <div class="card-footer">
+            <h4 class="text-muted">Author:{{author}}</h4>
+            <small class="text-muted">publish date: {{postDetail.publishDate | date:'short'}}</small><br>
+            <button class="bt btn-primary" (click)="generatePDF()">Get pdf</button>
+        </div>
+    </div>
+</div> 

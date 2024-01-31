@@ -1,0 +1,104 @@
+<form #userForm="ngForm" (ngSubmit)="updateUser()" *ngIf="user">
+    <div class="row mb-3">
+      <label for="firstNameId" class="col-sm-2 col-form-label">First Name</label>
+      <div class="col-sm-10">
+        <input type="text"
+         class="form-control" 
+         [(ngModel)]="user.firstName"
+         name="firstName"
+         required
+         #firstNameVar="ngModel"
+         id="firstNameId">
+         <div *ngIf="firstNameVar.touched && firstNameVar.invalid" class="alert alert-danger">
+            <span *ngIf="firstNameVar.errors?.['required']">
+              first name is required.
+            </span>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="lastNameId" class="col-sm-2 col-form-label">Last Name</label>
+      <div class="col-sm-10">
+        <input type="text"
+        [(ngModel)]="user.lastName"
+        name="lastName"
+        required
+        #lastNameVar="ngModel"
+        class="form-control" id="lastNameId">
+        <div *ngIf="lastNameVar.touched && lastNameVar.invalid" class="alert alert-danger">
+          <span *ngIf="lastNameVar.errors?.['required']">
+            last name is required.
+          </span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="row mb-3">
+        <label for="emailId" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email"
+            [(ngModel)]="user.email" 
+            name="email"
+            class="form-control"
+            required 
+            email
+            #emailVar="ngModel"
+            id="emailId">
+            <div *ngIf="emailVar.touched && emailVar.invalid" class="alert alert-danger">
+              <span *ngIf="emailVar.errors?.['required']">
+                email is required.
+              </span>
+              <span *ngIf="emailVar.errors?.['email']">
+                email pattern is invalid
+              </span>
+            </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="passwordId" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input [type]="passwordType" 
+                  [(ngModel)]="user.password"
+                  #passwordVar="ngModel"
+                  name="password"
+                  required
+            class="form-control" id="passwordId">
+            <span>
+              <i class="fa fa-solid {{eye}}" (click)="togglePassword()"></i>
+              
+            </span>
+            <div *ngIf="passwordVar.touched && passwordVar.invalid" class="alert alert-danger">
+              <span *ngIf="passwordVar.errors?.['required']">
+                password is required.
+              </span>
+            </div>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="userRole === 'Writer'">
+        <label for="bioId" class="col-sm-2 col-form-label">Bio</label>
+        <div class="col-sm-10">
+          <textarea 
+              name="bio"
+              [(ngModel)]="user.bio"
+              type="text" 
+              #bioVar="ngModel"
+              required
+              class="form-control" 
+              id="bioId" rows="10"></textarea>
+          <div *ngIf="bioVar.touched && bioVar.invalid" class="alert alert-danger">
+            <span *ngIf="bioVar.errors?.['required']">
+                  Bio is required.
+            </span>
+          </div>    
+        </div>
+      </div>
+      <div class="mb-3">
+        <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary mx-3">Edit</button>
+        <button type="button" class="btn btn-outline-secondary mx-3" (click)="onSaveCompleted()">Cancel</button>
+        <button type="button" class="btn btn-danger mx-3" (click)="deleteAccount()">Delete Account</button>
+      </div>
+    
+     <br>{{userForm.value | json}}
+     <br>Valid:{{userForm.valid}}
+      
+  </form>

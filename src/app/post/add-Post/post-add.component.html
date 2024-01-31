@@ -1,0 +1,136 @@
+
+<div class="card">
+    <div class="card-header">
+            {{formTitle}}
+    </div>
+    <div class="card-body">
+        <form action="" [formGroup]="postForm" (submit)="createUpdatePost()">
+            <div class="form-group row mb-2">
+                <label for="" class="col-md-2 col-form-label">
+                        Title
+                </label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" formControlName="title">
+                   <div *ngIf="title?.touched && title?.invalid" class="alert alert-danger">
+                        <span *ngIf="title?.errors?.['required']">
+                            title is requied
+                        </span>
+                   </div>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label for="" class="col-md-2 col-form-label">
+                    summary
+                </label>
+                <div class="col-md-8">
+                    <textarea type="text" class="form-control" formControlName="summary" rows="5"></textarea>
+                    <div *ngIf="summary?.touched && summary?.invalid" class="alert alert-danger">
+                        <span *ngIf="summary?.errors?.['required']">
+                            summary is requied
+                        </span>
+                   </div>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label for="" class="col-md-2 col-form-label">
+                    Thumbnail url
+                </label>
+                <div class="col-md-8">
+                    <ng-container *ngIf="thumbnail?.value !==''">
+                        <div>
+                           <img [src]="thumbnail?.value" height="100" class="my-2">
+                        </div>   
+                   </ng-container>
+                    <input type="search" class="form-control" formControlName="thumbnail">
+                    <div *ngIf="thumbnail?.touched && thumbnail?.invalid" class="alert alert-danger">
+                        <span *ngIf="thumbnail?.errors?.['required']">
+                            thumbnail url is requied
+                        </span>
+                        <span *ngIf="thumbnail?.errors?.['urlError']">
+                                invalid pattern
+                        </span>
+                   </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="" class="col-md-2 col-form-label">
+                        body
+                </label>
+                <div class="col-md-8">
+                    <angular-editor formControlName="content" [config]="editorConfig"></angular-editor>
+                    <div *ngIf="content?.touched && content?.invalid" class="alert alert-danger">
+                        <span *ngIf="content?.errors?.['required']">
+                            content is requied
+                        </span>
+                   </div>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label for="" class="col-md-2 ">
+                        category
+                </label>
+                <div class="col-md-8">
+                   
+                    <select class="form-select" aria-label="Default select example" formControlName="category">
+                        <option value="" disabled selected>Select your option</option>
+                        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                    </select>
+                    <div *ngIf="category?.touched && category?.invalid">
+                        <span *ngIf="category?.errors?.['requied']">
+                            category is required;
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row mb-2" *ngIf="publishDateShow">
+                <label for="" class="col-md-2 col-form-label" >
+                    Publish Date
+                </label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" formControlName="publishDate">
+                    <div *ngIf="publishDate?.touched && publishDate?.invalid" class="alert alert-danger">
+                        <span *ngIf="publishDate?.errors?.['required']">
+                            publish Date is requied
+                        </span>
+                   </div>
+                </div>
+            </div>
+         
+            
+           
+            <div class="form-group row mb-2">
+                <div class="offset-md-2 col-md-4">
+                    <button class="btn btn-primary mr-3"
+                    style="width:80px;"
+                    type="submit"
+                    [disabled]="postForm.invalid"
+                   >
+                    Save
+                  </button>
+                  <button class="btn btn-outline-secondary mr-3"
+                          style="width:80px;"
+                          type="button"
+                          title="Cancel your edits"
+                         >
+                    Cancel
+                  </button>
+                  <button class="btn btn-outline-warning"
+                          style="width:80px"
+                          type="button"
+                          (click)="removePost()"
+                        >
+                    Delete
+                  </button>
+                </div>
+              </div>
+        </form>
+    </div>
+</div>
+<div class="alert alert-danger" *ngIf="errorMessage">
+{{errorMessage}}
+</div>
+<br>{{postForm.value | json}}
+<br>validity:{{postForm.valid}}
+<br>touched:{{postForm.touched}}
+<br>dirty:{{postForm.dirty}}

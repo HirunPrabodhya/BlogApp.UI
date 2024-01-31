@@ -1,0 +1,78 @@
+
+    <div class="card">
+        <div class="card-header">
+            {{pageTitle}}
+        </div>
+        <div class="card-body">
+            <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+                <div class="form-group row mb-2">
+                    <label for="nameId" class="col-form-label">Name</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="nameId" formControlName="name">
+                        <div class="alert alert-danger" *ngIf="name?.touched && name?.invalid">
+                            <span *ngIf="name?.errors?.['required']">category name is required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label for="descriptionId" class="col-form-label">Description</label>
+                    <div class="col-md-8">
+                        <textarea type="text" class="form-control" rows="5" id="descriptionId" formControlName="description"></textarea>
+                        <div class="alert alert-danger" *ngIf="description?.touched && description?.invalid">
+                            <span *ngIf="description?.errors?.['required']">description is required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="imageUrlId" class="col-form-label">Image Url</label>
+                    <div class="col-md-8">
+                        <ng-container *ngIf="imageUrl?.value !==''">
+                            <div>
+                               <img [src]="imageUrl?.value" height="100" class="my-2">
+                            </div>   
+                       </ng-container>
+                        <input type="search" class="form-control" id="imageUrlId" formControlName="imageUrl">
+                        <div class="alert alert-danger" *ngIf="imageUrl?.touched && imageUrl?.invalid">
+                            <span *ngIf="imageUrl?.errors?.['required']">image url is required</span>
+                            <span *ngIf="imageUrl?.errors?.['urlError']">invalid image url</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <div class="offset-md-2 col-md-4">
+                        <button class="btn btn-primary mr-3"
+                        style="width:80px;"
+                        type="submit"
+                        [disabled]="categoryForm.invalid"
+                       >
+                        {{categoryId === 0 ? 'Add' : 'Edit'}}
+                      </button>
+                      <button class="btn btn-outline-secondary mr-3"
+                              style="width:80px;"
+                              type="button"
+                              title="Cancel your edits"
+                             [routerLink]="['/categories']">
+                        Cancel
+                      </button>
+                      <button class="btn btn-outline-warning"
+                              style="width:80px"
+                              type="button"
+                              (click)="removeCategory()"
+                            >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+            </form>
+    
+        </div>
+    </div>
+
+<div class="alert alert-danger" *ngIf="errorMessage">
+    {{errorMessage}}
+</div>
+
+<br>value: {{categoryForm.value | json}}
+<br>dirty: {{categoryForm.dirty}}
+<br>touched: {{categoryForm.touched }}
+<br>valid: {{categoryForm.valid }}

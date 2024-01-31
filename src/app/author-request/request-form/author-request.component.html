@@ -1,0 +1,50 @@
+<div class="my-content">
+    <div class="container position-relative">
+        <form class="form-content" [formGroup]="requstForm" (ngSubmit)="sendRequest()">
+            <div class="mb-3 pt-3">
+                <label for="firstNameId" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstNameId" formControlName="firstName" >
+                <div *ngIf="firstName?.touched && firstName?.invalid" class="alert alert-danger">
+                  <span *ngIf="firstName?.errors?.['required']">
+                      first name is required
+                  </span>
+                </div>
+             </div>
+             <div class="mb-3">
+                <label for="lastNameId" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastNameId" formControlName="lastName">
+                  <div *ngIf="lastName?.touched && lastName?.invalid" class="alert alert-danger">
+                    <span *ngIf="lastName?.errors?.['required']">
+                      last name is required
+                    </span>
+                  </div>
+              </div>
+            <div class="mb-3">
+              <label for="emailId" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="emailId" aria-describedby="emailHelp" formControlName="email">
+              <div class="alert alert-danger" *ngIf="email?.touched && email?.invalid">
+                <span *ngIf="email?.errors?.['required']">
+                  email is required
+                </span>
+                <span *ngIf="email?.errors?.['email']">
+                  invalid email pattern
+                </span>
+              </div>
+            </div>
+            <div class="mb-3">
+                <label for="bioId" class="form-label">Bio</label>
+                <textarea type="text" rows="5" class="form-control" id="bioId" formControlName="bio"></textarea>
+                <div class="alert alert-danger" *ngIf="bio?.touched && bio?.invalid">
+                    <span *ngIf="bio?.errors?.['required']">Bio is required</span>
+                </div>
+            </div>
+             <div class="mb-3">
+                <label for="cvId" class="form-label">CV</label>
+                <input type="file" class="form-control" placeholder="only pdf file required" (change)="onFileUpload($event)">
+             </div>
+            
+            <button type="submit" class="btn btn-primary mb-3" [disabled]="requstForm.invalid">Submit</button>
+          </form>
+    </div>
+    
+</div>

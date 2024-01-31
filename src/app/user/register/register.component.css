@@ -1,0 +1,25 @@
+
+form{
+    position: relative;
+    width:50%;
+    height: 36em;
+   
+    top:6em;
+    left:30%;
+}
+
+body{
+    background-image: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm405-pdsprintelement-f03-mockup_1.jpg?w=1200&h=1200&dpr=1&fit=clip&crop=default&fm=jpg&q=75&vib=3&con=3&usm=15&cs=srgb&bg=F4F4F3&ixlib=js-2.2.1&s=a1eab1650b1e3093a47971c4eadae9de");
+    background-repeat: no-repeat;
+    background-size: 1920px 1100px;
+
+}   
+
+mat-form-field{
+    width:200%;
+}
+@media screen and (max-width:576px){
+    mat-form-field{
+        width:100%;
+    }
+}

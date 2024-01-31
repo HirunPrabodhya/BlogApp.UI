@@ -1,0 +1,15 @@
+.my-content{
+    background-color: #379ad4;
+    background-size: cover;
+    height: 1080px;
+    margin-top:0;
+}
+.container{
+    background-color: rgb(75, 96, 96);
+    top:10%;
+    border-radius: 20px;
+}
+label{
+    color:#fff;    
+}
+ 
